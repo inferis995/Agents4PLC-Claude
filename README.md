@@ -69,27 +69,51 @@ git clone https://github.com/your-username/Agents4PLC.git
 cd Agents4PLC
 ```
 
-### Step 2: Start with the Orchestrator
+### Step 2: Create Your Agents with `/agent`
 1. Open Claude Code
-2. Use **Task tool** with:
-   - **Subagent Type**: `general-purpose`  
-   - **Description**: `Agents4PLC Workflow Orchestrator`
-   - **Prompt**: Copy from `agent_prompts/orchestrator_agent_prompt.md`
+2. Create the **Orchestrator Agent**:
+   ```
+   /agent create orchestrator "Agents4PLC Workflow Orchestrator"
+   ```
 
-3. Add your requirement:
-```
-USER REQUIREMENT: "Control LED with timer logic"
-CURRENT STATE: INIT
-PREVIOUS OUTPUT: None
-```
+3. Train it with the prompt from `agent_prompts/orchestrator_agent_prompt.md`:
+   ```
+   /agent train orchestrator
+   ```
+   Then paste the complete orchestrator prompt
 
-### Step 3: Follow the Workflow
-The Orchestrator will guide you through:
-1. **Knowledge Retrieval** → Find relevant PLC patterns
-2. **Implementation Planning** → Generate structured plans
-3. **Code Generation** → Create ST code
-4. **Validation** → Verify and compile
-5. **Debugging** → Fix any issues (if needed)
+4. Create all 5 specialized agents:
+   ```
+   /agent create retrieval "PLC Knowledge Retrieval Agent"
+   /agent create planning "PLC Implementation Planning Agent" 
+   /agent create coding "ST Code Generation Agent"
+   /agent create debugging "ST Code Debugging Agent"
+   /agent create validation "ST Code Validation Agent"
+   ```
+
+5. Train each agent with their respective prompts from `agent_prompts/`
+
+### Step 3: Use the Workflow
+Once agents are created and trained:
+
+1. **Start with Orchestrator**:
+   ```
+   @orchestrator "Control LED with timer logic"
+   ```
+
+2. **Follow the guided workflow**:
+   - Orchestrator tells you which agent to use next
+   - Use `@retrieval`, `@planning`, `@coding`, `@validation`, `@debugging` 
+   - Each agent provides input for the next step
+
+3. **Example workflow**:
+   ```
+   @orchestrator "Create water treatment system"
+   @retrieval [search for water treatment patterns]
+   @planning [generate implementation plans]
+   @coding [create ST code from selected plan]
+   @validation [verify and compile code]
+   ```
 
 ## 💡 Example Usage
 

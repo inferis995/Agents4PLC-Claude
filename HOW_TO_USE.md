@@ -21,54 +21,43 @@ C:\Users\Utente\Agents4PLC\
 
 ## 🚀 Come Usare gli Agenti
 
-### Step 1: Retrieval Agent
-```
-Usa Task tool con:
-Subagent Type: general-purpose
-Description: PLC Knowledge Retrieval Agent
+### Step 1: Crea gli Agenti con `/agent`
+```bash
+# Crea l'Orchestrator
+/agent create orchestrator "Agents4PLC Workflow Orchestrator"
 
-Prompt: [Copia da agent_prompts/retrieval_agent_prompt.md]
-+ Aggiungi: "USER REQUIREMENT: Control LED with timer logic"
-```
-
-### Step 2: Planning Agent  
-```
-Usa Task tool con:
-Subagent Type: general-purpose
-Description: PLC Implementation Planning Agent
-
-Prompt: [Copia da agent_prompts/planning_agent_prompt.md]
-+ Aggiungi: "INPUT: [output dal Retrieval Agent]"
+# Crea tutti gli agenti specializzati
+/agent create retrieval "PLC Knowledge Retrieval Agent"
+/agent create planning "PLC Implementation Planning Agent"
+/agent create coding "ST Code Generation Agent"
+/agent create debugging "ST Code Debugging Agent"
+/agent create validation "ST Code Validation Agent"
 ```
 
-### Step 3: Coding Agent
-```
-Usa Task tool con:
-Subagent Type: general-purpose  
-Description: ST Code Generation Agent
+### Step 2: Addestra ogni Agente
+```bash
+# Addestra l'orchestrator
+/agent train orchestrator
+# Poi copia il prompt da agent_prompts/orchestrator_agent_prompt.md
 
-Prompt: [Copia da agent_prompts/coding_agent_prompt.md]
-+ Aggiungi: "SELECTED PLAN: [piano dal Planning Agent]"
-```
+# Addestra retrieval agent
+/agent train retrieval  
+# Poi copia il prompt da agent_prompts/retrieval_agent_prompt.md
 
-### Step 4: Validation Agent
-```
-Usa Task tool con:
-Subagent Type: general-purpose
-Description: ST Code Validation Agent  
-
-Prompt: [Copia da agent_prompts/validation_agent_prompt.md]
-+ Aggiungi: "ST CODE: [codice dal Coding Agent]"
+# E così via per tutti gli agenti...
 ```
 
-### Step 5: Debugging Agent (se necessario)
-```
-Usa Task tool con:
-Subagent Type: general-purpose
-Description: ST Code Debugging Agent
+### Step 3: Usa il Workflow
+```bash
+# Inizia sempre con l'orchestrator
+@orchestrator "Control LED with timer logic"
 
-Prompt: [Copia da agent_prompts/debugging_agent_prompt.md]  
-+ Aggiungi: "ERRORS: [errori dal Validation Agent]"
+# Segui le istruzioni dell'orchestrator, esempio:
+@retrieval "Cerca pattern per LED e timer"
+@planning "Genera piani basati sui risultati del retrieval"
+@coding "Genera codice ST dal piano selezionato"
+@validation "Verifica il codice generato"
+# @debugging "Correggi errori se necessario"
 ```
 
 ## 🔄 Workflow Completo
