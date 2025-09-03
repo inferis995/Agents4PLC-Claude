@@ -1,0 +1,55 @@
+# Claude Code specific
+.claude/
+*.claude-session
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Logs
+*.log
+logs/
+
+# Output files
+output/
+generated_code/
+*.st.bak
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python cache (if added later)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node modules (if added later)  
+node_modules/
+
+# Personal notes
+NOTES.md
+TODO.md
+PRIVATE_NOTES.md
+
+# Test outputs
+test_results/
+validation_reports/
+
+# Backup files
+*.bak
+*.backup
+*_backup.*

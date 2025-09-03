@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 Poola Ai
+Copyright (c) 2024 Agents4PLC Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,21 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+INDUSTRIAL SAFETY NOTICE:
+
+This software generates code for industrial control systems. Users are 
+responsible for:
+
+1. Thoroughly reviewing and testing all generated code
+2. Ensuring compliance with applicable safety standards (IEC 61508, IEC 61511)
+3. Implementing appropriate safety interlocks and emergency procedures
+4. Validating systems with qualified automation professionals
+5. Following proper commissioning and testing procedures
+
+The contributors make no warranties regarding the suitability of generated
+code for safety-critical applications. Industrial control systems should
+always be designed, implemented, and maintained by qualified professionals
+following applicable standards and regulations.
